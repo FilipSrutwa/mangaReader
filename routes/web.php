@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MangaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +16,7 @@ use App\Http\Controllers\LandingPageController;
 */
 
 Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/SingleManga/{id}', [MangaController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
