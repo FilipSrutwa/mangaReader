@@ -134,12 +134,20 @@
         <div class="col">
             <div class="shadow-lg p-3 mb-5 bg-body rounded">
                 <div class="d-flex flex-row my-1">
-                    <img src={{ asset('img/mangaexample1.jpg') }} class="img-thumbnail">
+                    <img src={{ asset($img) }} class="img-thumbnail">
                     <div class="d-flex flex-column p-1">
                         <h1>{{$mangaTitle}}</h1>
                         <h3>Artist: {{$artist}}</h3>
                         <h3>Genre: {{$genre}}</h3>
-                        <h3>Status: <span class="text-success">completed</span> / <span class="text-warning">ongoing</span> / <span class="text-danger">abandoned</span> </h3>
+                        <h3>Status:
+                            @if($status == 'Completed')
+                            <span class="text-success">completed</span>
+                            @elseif($status == 'Ongoing')
+                            <span class="text-warning">Ongoing</span>
+                            @else
+                            <span class="text-danger">Something went wrong</span>
+                            @endif
+                        </h3>
                         <h3>Chapters count: {{$chaptersCount}}</h3>
                         <h3>Last updated: {{$updatedAt}}</h3>
                         <div class="col">
