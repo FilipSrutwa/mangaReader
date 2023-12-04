@@ -10,5 +10,5 @@ class Manga extends Model
     use HasFactory;
 
     protected $table = 'mangas';
-    protected $primaryKey = 'manga_ID';
+    protected $primaryKey = 'id';
 }
