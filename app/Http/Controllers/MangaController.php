@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Models\ChaptersPage;
 use App\Models\Manga;
+use App\Models\MangasChapter;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
@@ -35,5 +37,24 @@ class MangaController extends Controller
         ];
         Debugbar::info($data);
         return view('manga', $data);
+    }
+    public function readChapter($chapterID)
+    {
+        $pagesModel = ChaptersPage::where('manga_chapter_id', $chapterID)->first();
+        $data = [
+            'title' => 'MangaReader - manga name',
+            'pagesPath' => $pagesModel->page_path,
+            'pages' => $this->grabPages($pagesModel->page_path),
+        ];
+        Debugbar::info($data);
+        return view('readChapter', $data);
+    }
+
+    //private methods
+    private function grabPages($path)
+    {
+        $files = preg_grep('~\.(jpeg|jpg|png)$~', scandir($path));
+
+        return $files;
     }
 }

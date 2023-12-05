@@ -17,6 +17,7 @@ use App\Http\Controllers\MangaController;
 
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/SingleManga/{id}', [MangaController::class, 'index']);
+Route::get('/ReadChapter/{chapterId}', [MangaController::class, 'readChapter']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
