@@ -18,6 +18,7 @@ class MangaController extends Controller
         $artistModel = Artist::where('id', $mangaModel->artist_id)->first();
         if ($artistModel == null)
             abort(404);
+
         $isFinished = 'Ongoing';
         if ($mangaModel->is_finished == true)
             $isFinished = 'Finished';
