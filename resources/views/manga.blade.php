@@ -151,26 +151,19 @@
                         <h3>Chapters count: {{$chaptersCount}}</h3>
                         <h3>Last updated: {{$updatedAt}}</h3>
                         <div class="col">
-                            <a href="#" class="btn btn-lg btn-outline-warning">Read latest</a>
-                            <a href="#" class="btn btn-lg btn-outline-warning">Read first</a>
+                            <a href={{ URL::to('/ReadChapter/'.$chapters[0]['id']) }} class="btn btn-lg btn-outline-warning">Read first</a>
+                            <a href={{ URL::to('/ReadChapter/'.$lastChapter['id']) }} class="btn btn-lg btn-outline-warning">Read latest</a>
                             <a href="#" class="btn btn-lg btn-outline-warning">Bookmark</a>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex flex-column mt-2 overflow-scroll" style="height: 25vh; overflow-x:hidden !important;">
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
-                    <a href="#" class="my-1 h5 text-primary">Chapter: 1</a>
+
+                    @forelse($chapters as $chapter)
+                    <a href={{ URL::to('/ReadChapter/'.$chapter['id']) }} class="my-1 h5 text-primary">Chapter: {{ $chapter['chapter_number'] }}</a>
+                    @empty
+                    <p>No available chapters at the moment</p>
+                    @endforelse
                 </div>
             </div>
         </div>

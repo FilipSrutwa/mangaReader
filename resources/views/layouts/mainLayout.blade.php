@@ -38,15 +38,14 @@
             <ul class="navbar-nav">
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{URL::to('/login');}}>Login</a>
+                    <a class="nav-link" aria-current="page" href={{URL::to('/login');}}>Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href={{URL::to('/register');}}>Register</a>
+                    <a class="nav-link" aria-current="page" href={{URL::to('/register');}}>Register</a>
                 </li>
                 @endguest
                 @auth
                 <li class="nav-item">
-
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
@@ -56,6 +55,9 @@
                         </a>
                     </form>
                 </li>
+                <liv class="nav-item">
+                    <a href="#" class="nav-link">Add new manga</a>
+                </liv>
                 @endauth
         </div>
     </nav>
