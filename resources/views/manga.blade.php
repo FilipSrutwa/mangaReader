@@ -154,6 +154,9 @@
                             <a href={{ URL::to('/ReadChapter/'.$chapters[0]['id']) }} class="btn btn-lg btn-outline-warning">Read first</a>
                             <a href={{ URL::to('/ReadChapter/'.$lastChapter['id']) }} class="btn btn-lg btn-outline-warning">Read latest</a>
                             <a href="#" class="btn btn-lg btn-outline-warning">Bookmark</a>
+                            @auth
+                            <a href={{URL::to('/uploadChapter/'.$mangaID)}} class="btn btn-lg btn-outline-warning">Add new chapter</a>
+                            @endauth
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,8 @@ use App\Http\Controllers\MangaController;
 Route::get('/', [LandingPageController::class, 'index']);
 Route::get('/SingleManga/{id}', [MangaController::class, 'index']);
 Route::get('/ReadChapter/{chapterId}', [MangaController::class, 'readChapter']);
+Route::get('/uploadChapter/{mangaID}', [MangaController::class, 'getUploadChapter']);
+Route::post('/uploadChapter/{mangaID}', [MangaController::class, 'postUploadChapter']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

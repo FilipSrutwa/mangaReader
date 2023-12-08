@@ -12,10 +12,12 @@
         @endif
     </title>
 
-    <!--BOOTSTRAP ASSETS!-->
+    <!-- BOOTSTRAP ASSETS !-->
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <script src="{{asset('bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
+    <!-- JQUERY !-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>

@@ -35,6 +35,7 @@ class MangaController extends Controller
             'img' => $mangaModel->img_path,
             'chapters' => $this->grabChapters($mangaID),
             'lastChapter' => last($this->grabChapters($mangaID)),
+            'mangaID' => $mangaID,
         ];
 
         Debugbar::info($data);
@@ -51,6 +52,44 @@ class MangaController extends Controller
 
         Debugbar::info($data);
         return view('readChapter', $data);
+    }
+    public function getUploadChapter($mangaID)
+    {
+        $existingChapters = "";
+        $chaptersModel = MangasChapter::all();
+        for ($i = 0; $i < count($chaptersModel); $i++) {
+            if ($i == 0)
+                $existingChapters = $existingChapters . $chaptersModel[$i]->chapter_number;
+            else
+                $existingChapters = $existingChapters . "::" . $chaptersModel[$i]->chapter_number;
+        }
+
+        $data = [
+            'title' => 'MangaReader - adding chapter',
+            'mangaID' => $mangaID,
+            'existingChapters' => $existingChapters,
+        ];
+
+        Debugbar::info($data);
+        return view('uploadChapter', $data);
+    }
+    public function postUploadChapter($mangaID)
+    {
+        $path = "mangas/manga_" . $mangaID . "/chapter_" . request('chapterNumber');
+
+        $chapterModel = new MangasChapter();
+        $chapterModel->manga_id = $mangaID;
+        $chapterModel->chapter_number = request('chapterNumber');
+        $chapterModel->pages_path = $path;
+        $chapterModel->save();
+
+        mkdir($path);
+        foreach (request('file') as $file) {
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path($path), $filename);
+        }
+
+        return view('postTest');
     }
 
     //private methods
